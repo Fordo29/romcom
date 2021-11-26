@@ -58,24 +58,15 @@ function displaySavedCover() {
 
 function showCover(){
   makeUserCover();
-  for (var i = 0; i <savedCovers.length; i++) {
-    displaySavedCoversPage.innerHTML +=
-    `<section class="mini-cover">
-    <img class="cover-image" src="${savedCovers[i].cover}">
-    <h2 class="cover-title">${savedCovers[i].title}</h2>
-    <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
-    </section>'`
-  }
-
+  pageLoad();
   savedCovers.push(currentCover);
+  savedCovers.forEach(elements => displaySavedCoversPage.innerHTML +=
+  `<section class="mini-cover">
+  <img class="cover-image" src="${savedCovers.cover}">
+  <h2 class="cover-title">${savedCovers.title}</h2>
+  <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers.tagline1}</span> and <span class="tagline-2">${savedCovers.tagline2}</span></h3>
+  </section>'`)
   console.log(savedCovers);
-}
-
-function pushUserInput() {
-  covers.push(inputCover.value);
-  titles.push(inputTitle.value);
-  descriptors.push(inputDescriptor1.value);
-  descriptors.push(inputDescriptor2.value);
 }
 
 function makeUserCover() {
@@ -87,24 +78,26 @@ function makeUserCover() {
   descriptor1.innerText = inputDescriptor1.value;
   descriptor2.innerText = inputDescriptor2.value;
   showHomeView();
+
+
+
+function pushUserInput() {
+  covers.push(inputCover.value);
+  titles.push(inputTitle.value);
+  descriptors.push(inputDescriptor1.value);
+  descriptors.push(inputDescriptor2.value);
+}
+
 }
 
 function showHomeView() {
-  saveButton.classList.remove('hidden');
-  homeButton.classList.add('hidden');
-  randomButton.classList.remove('hidden');
-  homePage.classList.remove('hidden');
-  displaySavedCoversPage.classList.add('hidden');
-  formPage.classList.add('hidden');
+  show([saveButton, randomButton, homePage]);
+  hide([formPage, displaySavedCoversPage, homeButton]);
 }
 
 function showSavedView() {
-  saveButton.classList.add('hidden');
-  randomButton.classList.add('hidden');
-  homeButton.classList.remove('hidden');
-  homePage.classList.add('hidden');
-  displaySavedCoversPage.classList.remove('hidden');
-  formPage.classList.add('hidden');
+  show([homeButton, displaySavedCoversPage]);
+  hide([saveButton, randomButton, homePage, formPage]);
 }
 
 function showFormView() {
@@ -118,16 +111,6 @@ function pageLoad() {
    descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
    descriptor2.innerText = descriptors[getRandomIndex(descriptors)];
  }
- //
- // function displayOrHide(showOrHide, elements) {
- //   for (var i = 0; i < elements.length; i++) {
- //     if (showOrHide === "show") {
- //       elements[i].classList.remove("hidden");
- //     } else {
- //       elements[i].classList.add("hidden");
- //     }
- //   }
- // }
 
  const show = (elements) => {
    elements.forEach(element => element.classList.remove('hidden'))
