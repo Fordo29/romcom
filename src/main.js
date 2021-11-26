@@ -108,12 +108,8 @@ function showSavedView() {
 }
 
 function showFormView() {
-  homeButton.classList.remove('hidden');
-  randomButton.classList.add('hidden');
-  saveButton.classList.add('hidden');
-  formPage.classList.remove('hidden');
-  homePage.classList.add('hidden');
-  displaySavedCoversPage.classList.add('hidden');
+   show([homeButton, formPage]);
+   hide([randomButton, saveButton, homePage, displaySavedCoversPage]);
 }
 
 function pageLoad() {
@@ -122,6 +118,25 @@ function pageLoad() {
    descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
    descriptor2.innerText = descriptors[getRandomIndex(descriptors)];
  }
+ //
+ // function displayOrHide(showOrHide, elements) {
+ //   for (var i = 0; i < elements.length; i++) {
+ //     if (showOrHide === "show") {
+ //       elements[i].classList.remove("hidden");
+ //     } else {
+ //       elements[i].classList.add("hidden");
+ //     }
+ //   }
+ // }
+
+ const show = (elements) => {
+   elements.forEach(element => element.classList.remove('hidden'))
+ }
+
+ const hide = (elements) => {
+   elements.forEach(element => element.classList.add('hidden'))
+ }
+
 
  function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
