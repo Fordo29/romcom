@@ -79,7 +79,7 @@ function makeUserCover() {
   descriptor2.innerText = inputDescriptor2.value;
   showHomeView();
 
-
+}
 
 function pushUserInput() {
   covers.push(inputCover.value);
@@ -88,7 +88,15 @@ function pushUserInput() {
   descriptors.push(inputDescriptor2.value);
 }
 
+
+function pageLoad() {
+  image.src = covers[getRandomIndex(covers)];
+  bookTitle.innerText = titles[getRandomIndex(titles)];
+  descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
+  descriptor2.innerText = descriptors[getRandomIndex(descriptors)];
 }
+
+
 
 function showHomeView() {
   show([saveButton, randomButton, homePage]);
@@ -105,12 +113,6 @@ function showFormView() {
    hide([randomButton, saveButton, homePage, displaySavedCoversPage]);
 }
 
-function pageLoad() {
-   image.src = covers[getRandomIndex(covers)];
-   bookTitle.innerText = titles[getRandomIndex(titles)];
-   descriptor1.innerText = descriptors[getRandomIndex(descriptors)];
-   descriptor2.innerText = descriptors[getRandomIndex(descriptors)];
- }
 
  const show = (elements) => {
    elements.forEach(element => element.classList.remove('hidden'))
